@@ -1,0 +1,38 @@
+# Settings locales de Claude Code (no distribuir)
+.claude/settings.local.json
+
+# Datos sensibles del negocio: historiales y datos personales de clientes
+data/clientes/**
+!data/clientes/.gitkeep
+
+# Cache y temporales del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Backups
+*.bak
+
+# Python (por si dev-sin-cero corre scripts locales)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node (por si hay herramientas locales)
+node_modules/
+
+# Logs
+*.log
+logs/
+
+# Archivos temporales de Claude Agent SDK / testing
+.claude-agent-*/
+tmp/

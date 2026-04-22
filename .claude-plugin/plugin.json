@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "sin-cero",
+  "version": "0.1.0",
+  "description": "Sistema agentic de Sin Cero: cinco especialistas (nutricion, inventario, marketing, servicio al cliente, soporte tecnico) para gestion y administracion del negocio de comida. Optimizado para Cowork con skills auto-activables.",
+  "author": {
+    "name": "Sin Cero",
+    "email": "srparca@gmail.com"
+  },
+  "keywords": [
+    "sin-cero",
+    "comida",
+    "nutricion",
+    "gestion-negocio",
+    "inventario",
+    "marketing",
+    "servicio-cliente",
+    "espanol"
+  ],
+  "license": "Proprietary"
+}

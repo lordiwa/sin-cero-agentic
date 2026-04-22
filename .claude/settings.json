@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "_comment": "Configuración del sistema agentic Sin Cero. Ver docs/arquitectura.md.",
+
+  "permissions": {
+    "allow": [
+      "Read(./knowledge/**)",
+      "Read(./data/**)",
+      "Read(./docs/**)",
+      "Read(./CLAUDE.md)",
+      "Read(./README.md)",
+      "Glob(*)",
+      "Grep(*)"
+    ],
+    "deny": [],
+    "ask": [
+      "Write(./data/clientes/**)",
+      "Edit(./data/clientes/**)"
+    ]
+  },
+
+  "mcpServers": {
+    "_comment_whatsapp": "PLACEHOLDER. El dueño debe elegir implementación y proveer credenciales. Ejemplo recomendado: lharries/whatsapp-mcp (https://github.com/lharries/whatsapp-mcp). Pasos: 1) Clonar repo del MCP. 2) Seguir instrucciones de auth (escaneo QR de WhatsApp Web). 3) Reemplazar el bloque 'whatsapp' de abajo con la configuración real (command, args, env). 4) Reiniciar Claude Code. Mientras tanto el bloque está deshabilitado para no romper el arranque.",
+    "whatsapp_disabled": {
+      "command": "uv",
+      "args": ["--directory", "RUTA/AL/whatsapp-mcp/whatsapp-mcp-server", "run", "main.py"],
+      "env": {}
+    }
+  }
+}
