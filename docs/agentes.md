@@ -1,11 +1,6 @@
 # Ficha detallada de cada especialista
 
-Sin Cero tiene **5 especialistas**. Cada uno existe en dos formatos:
-
-- **Skill** (`skills/<nombre>/SKILL.md`) — se activa automaticamente en Cowork cuando la pregunta coincide con su description. Es el mecanismo primario.
-- **Agent** (`.claude/agents/<nombre>.md`) — se invoca explicitamente en Claude Code con `@nombre` o via Task tool. Es el mecanismo secundario, mantenido por compatibilidad.
-
-Ambos formatos describen la misma responsabilidad y leen los mismos modulos de `knowledge/`. El que este mas reciente es la fuente de verdad; idealmente ambos se actualizan juntos.
+Sin Cero tiene **5 especialistas**. Cada uno vive como una **skill** en `skills/<nombre>/SKILL.md`. Las skills se activan automaticamente en Cowork cuando la descripcion coincide con la pregunta del usuario.
 
 ---
 
@@ -18,8 +13,6 @@ Ambos formatos describen la misma responsabilidad y leen los mismos modulos de `
 - Se pide composicion nutricional de una receta.
 - Se piden recetas con perfil especifico (alto en proteina, bajo en sodio, antiinflamatorio, alto en fibra).
 - Se pide adaptar una receta a una restriccion (celiaco, vegano, keto, alergias).
-
-**Herramientas**: Read, Write, Edit, Grep, Glob, WebSearch, WebFetch.
 
 **Knowledge que consume**: `recetas`, `factores-nutricionales`, `preferencias-alimentarias`.
 
@@ -44,8 +37,6 @@ Ambos formatos describen la misma responsabilidad y leen los mismos modulos de `
 - Se habla de mermas, rendimientos, planificacion de compras.
 - Se evalua viabilidad operativa de una receta nueva.
 
-**Herramientas**: Read, Write, Edit, Grep, Glob (sin web — opera con datos locales).
-
 **Knowledge que consume**: `recetas`, `procesos-produccion`, `costos-operativos`.
 
 **Datos que consulta**: `data/inventario/`, `data/recetas/`.
@@ -66,9 +57,7 @@ Ambos formatos describen la misma responsabilidad y leen los mismos modulos de `
 - Se pide estrategia de comunicacion o posicionamiento.
 - Se pide benchmark de precio.
 
-**Herramientas**: Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Task.
-
-**Knowledge que consume**: `marketing-estrategia`, `recetas`, `preferencias-alimentarias`.
+**Knowledge que consume**: `marketing-estrategia`, `recetas`, `preferencias-alimentarias`, `templates-mensajes`.
 
 **Datos que consulta / escribe**: `data/investigaciones/`.
 
@@ -88,9 +77,7 @@ Ambos formatos describen la misma responsabilidad y leen los mismos modulos de `
 - Se pide recordatorio de cobranza.
 - Se analizan quejas o feedback.
 
-**Herramientas**: Read, Write, Edit, Grep, Glob (+ MCP WhatsApp cuando este activo).
-
-**Knowledge que consume**: `clientes`, `recetas`, `factores-nutricionales`, `preferencias-alimentarias`, `procesos-servicio`.
+**Knowledge que consume**: `clientes`, `recetas`, `factores-nutricionales`, `preferencias-alimentarias`, `procesos-servicio`, `templates-mensajes`.
 
 **Datos que consulta**: `data/clientes/`, `data/recetas/`. **Escrituras a `data/clientes/` requieren confirmacion humana.**
 
@@ -108,7 +95,7 @@ Ambos formatos describen la misma responsabilidad y leen los mismos modulos de `
 - Se pide configurar MCPs (WhatsApp, otros).
 - Se pide crear/ajustar schedulers, hooks, automatizaciones.
 - Hay un debug tecnico.
-- Se pide modificar el plugin (skills, agents, settings, manifest).
+- Se pide modificar el plugin (skills, settings, manifest).
 
 **Herramientas**: todas (Read, Write, Edit, Grep, Glob, Bash, WebSearch, WebFetch).
 
@@ -121,17 +108,13 @@ Ambos formatos describen la misma responsabilidad y leen los mismos modulos de `
 
 ---
 
-## Cuando NO usar especialistas
+## Cuando NO activar especialistas
 
 Para preguntas conversacionales o triviales, responde sin activar ninguno. Activar un especialista tiene un costo (tokens, latencia) — usalo cuando realmente aporta criterio o conocimiento que vale el viaje.
 
-## Como se compaginan skill vs agent
+## Mantenimiento de skills
 
-| Aspecto | Skill (Cowork) | Agent (Claude Code) |
-|---|---|---|
-| Activacion | Automatica por description | Explicita con `@nombre` o Task |
-| Contexto | En la sesion actual | Contexto aislado propio |
-| Archivo | `skills/<nombre>/SKILL.md` | `.claude/agents/<nombre>.md` |
-| Ideal para | Gestion del negocio en Cowork | Uso tecnico de Claude Code |
-
-Ambos describen el mismo rol y leen los mismos modulos de `knowledge/`. Si editas uno, idealmente actualiza el otro para evitar drift.
+- Cada SKILL.md tiene frontmatter YAML con `name`, `description`, `license` (minimo).
+- La `description` es lo que determina si la skill se activa. Debe incluir triggers positivos ("Usar cuando...") y negativos ("NO usar para...").
+- Si agregas o modificas una skill, bumpea la version en `.claude-plugin/plugin.json` y `.claude-plugin/marketplace.json`.
+- Para validar que una skill esta bien formada, `dev-sin-cero` puede correr `quick_validate.py` del skill-creator.

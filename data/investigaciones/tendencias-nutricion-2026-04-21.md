@@ -124,4 +124,4 @@ Política pública:
 
 ## Nota técnica sobre la ejecución
 
-Este scheduled task se ejecuta desde Cowork, que **no invoca automáticamente los subagentes de `.claude/agents/`** (ese patrón es nativo de Claude Code). Por eso el orquestador de Cowork leyó manualmente `nutricionista.md` y actuó según sus instrucciones. Si quieres que el scheduled task tenga el contexto cargado desde el arranque, conviene: (a) mencionar explícitamente en el prompt la ruta del agente (`C:\Users\srpar\OneDrive\Documents\sin-cero-agentic\.claude\agents\nutricionista.md`), y (b) pedir que la carpeta del proyecto esté conectada antes de empezar.
+Esta investigación se ejecutó antes de que el proyecto migrara a plugin Cowork con skills auto-activables. Desde la versión actual, el scheduled task activa automáticamente la skill `nutricionista` (en `skills/nutricionista/SKILL.md`) cuando reconoce triggers como "articulos de salud y alimentacion". Si el plugin no está instalado, el orquestador lee directamente `skills/nutricionista/SKILL.md` como fallback.

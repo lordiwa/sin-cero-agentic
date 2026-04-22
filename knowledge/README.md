@@ -1,6 +1,6 @@
 # Knowledge — Módulos de conocimiento compartidos
 
-Cada archivo `.md` en este directorio es un **módulo de conocimiento** sobre un dominio del negocio Sin Cero. Los subagentes los leen on-demand cuando necesitan contexto sobre ese dominio.
+Cada archivo `.md` en este directorio es un **módulo de conocimiento** sobre un dominio del negocio Sin Cero. Las skills los leen on-demand cuando necesitan contexto sobre ese dominio.
 
 > **Por qué markdown y no skills ejecutables:** estos son áreas de conocimiento (no acciones). Un solo archivo por dominio = una única fuente de verdad, sin duplicación entre agentes.
 
@@ -17,11 +17,12 @@ Cada archivo `.md` en este directorio es un **módulo de conocimiento** sobre un
 | [`costos-operativos.md`](costos-operativos.md) | Inventario |
 | [`clientes.md`](clientes.md) | Servicio al Cliente |
 | [`marketing-estrategia.md`](marketing-estrategia.md) | Marketing |
+| [`templates-mensajes.md`](templates-mensajes.md) | Servicio al Cliente · Marketing · DEV-Sin Cero |
 
 ## Cómo agregar un módulo nuevo
 
 1. Crea `knowledge/<nombre>.md` siguiendo la plantilla estándar (ver cualquier módulo existente).
-2. Si lo van a usar varios agentes, **edita esta tabla** y **edita los archivos `.claude/agents/*.md`** de los agentes consumidores para que sepan que existe.
+2. Si lo van a usar varios especialistas, **edita esta tabla** y **edita los archivos `skills/<nombre>/SKILL.md`** de los especialistas consumidores para que sepan que existe.
 3. No dupliques contenido entre módulos. Si dos módulos comparten algo, refactoriza a un tercer módulo o referencia con un link.
 
 ## Plantilla de un módulo

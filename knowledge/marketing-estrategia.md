@@ -5,25 +5,133 @@
 ## Agentes que lo consumen
 - `marketing` (único consumidor activo)
 
+## Identidad de marca (verificado en app)
+
+### Nombre y claim
+- **Marca:** Sin-Cero (con guión en uso visual; el dominio es `sin-cero.com`).
+- **Tagline oficial:** "Comida 100% natural, sin ultra procesados".
+- **Producto insignia:** Enjarrada — ensalada gourmet servida en jarro con componentes separados para frescura.
+
+### Paleta (verificado en código)
+- **Verde principal:** `#54BF8B` (Tailwind `brand-green`)
+- **Verde claro:** `#6dd199` (Tailwind `brand-green-light`)
+- **Verde oscuro:** `#0b2718` (Tailwind `brand-dark`)
+- **Fondo PWA:** `#F9FAF4` (crema muy claro, no blanco puro)
+- **Theme color PWA:** `#55bf8c`
+
+Nota: hay leve inconsistencia entre el valor del Tailwind (#54BF8B) y el del manifest PWA (#55bf8c). Pedir al dueño que defina el canónico y alinear en un solo cambio.
+
+### Tipografías
+- **Principal:** Inter (Google Fonts).
+- **Futura:** Gordita (cuando esté licenciada/disponible).
+
+### Activos visuales
+- Logo: `public/logo.jpg` del repo de la app.
+- Hero: `public/jarra.jpg` — el jarro es el ícono del producto.
+
 ## Voz de marca
-- TODO: 3-5 adjetivos que describan la voz (ej: cercana, experta, sin moralismo, optimista).
-- TODO: lo que la voz NUNCA es (ej: condescendiente, alarmista).
-- TODO: ejemplos de "esto sí / esto no".
+
+- **Adjetivos:** cercana, fresca, directa, optimista, sin moralismo.
+- **Lo que NO es:** condescendiente, alarmista, "fitness hardcore", culpógena, elitista.
+- **Registro:** tuteo informal en redes y WhatsApp 1-a-1.
+- **Emojis aceptados:** 👋 🎉 ❤️ ✅ 📅 ⏰ ⭐ (puntuales, no decorativos).
+
+### Copy real del producto (verificado en `views/HomePage.vue` y `components/order/`)
+
+Estos son los textos que el cliente ve en la app. Son el anclaje del tono oficial:
+
+**Headings:**
+- "Sugerencia del Chef"
+- "Elige tu forma favorita de armar tu enjarrada"
+- "Elige cada ingrediente a tu gusto"
+- "Usa tu pack de 20 almuerzos"
+- "¿Cómo funciona?"
+
+**Instrucciones:**
+- "Marca los ingredientes que NO te gustan y nosotros armamos tu enjarrada perfecta"
+- "Solo dinos qué ingredientes prefieres evitar. Nuestro chef seleccionará la mejor combinación con todo lo demás."
+
+**Selectores:**
+- "1. Elige 6 verduras" (Extras: $0.30 c/u - Máximo 8 total)
+- "2. Elige proteínas" (Máximo 2)
+- "3. Elige carbohidratos" (1° gratis, extras: +$0.90)
+- "4. Elige carbohidratos especiales (opcional)"
+- "5. Elige aderezos"
+- "6. Elige 1 fruta"
+
+**Delivery:**
+- "Información de Entrega"
+- "Horario: Lunes a Viernes, 12:00 PM - 15:00 PM"
+- "Pedidos hasta las 21:30 del día anterior"
+- "Ⓘ El costo de delivery se calculará según tu ubicación y será confirmado vía WhatsApp"
+
+**Fidelidad:**
+- "¡Tienes almuerzo(s) gratis!"
+- "${n} más para tu próximo gratis"
+- "${n} frascos más para un almuerzo gratis"
+- "¡Listo para tu almuerzo gratis! Habla con nosotros."
+
+**Pack:**
+- "Pack activo: ${codigo}"
+- "${n} créditos disponibles"
+- "Este pedido usará 1 crédito de tu pack."
+- "Ingresa tu código de pack"
+
+**Validación:**
+- "El nombre es requerido"
+- "El teléfono es requerido"
+- "La dirección es requerida"
+
+### Reglas para copy nuevo
+- Imperativo suave ("Elige", "Marca"), no "Debes".
+- Cifras duras cuando existen ("Máximo 8", "$0.30 c/u"), sin redondear.
+- Emojis puntuales, nunca decorativos.
+- Mayúsculas solo al inicio o en *inline bold* para resaltar ("MI ENJARRADA" solo en el template de WhatsApp).
 
 ## Segmentos objetivo
-- TODO: segmento primario (perfil demográfico, psicográfico, hábitos).
-- TODO: segmentos secundarios.
-- TODO: anti-segmento (a quién NO le hablamos).
 
-## Canales
-- TODO: canales activos (Instagram, TikTok, WhatsApp, mailing, web, otros).
-- TODO: rol de cada canal (awareness, conversión, retención).
-- TODO: frecuencia de publicación por canal.
+### Primario (según sondeo 2026-04-21 y app)
+Profesionales urbanos 25-45 años en **Quito, Ecuador**. Tienen ingresos medios-altos, valoran conveniencia (delivery), rechazan dietas restrictivas, quieren "comer sano sin sacrificar sabor". Sensibles a precio en el rango $3-$5/almuerzo individual y $25-$50 por planes de 5-10 días.
+
+### Secundarios
+- **B2B corporativo** — almuerzos ejecutivos, contratos recurrentes en oficinas de Quito. Segmento poco explotado por la competencia.
+- **Clientes con packs** — prepagan 20 almuerzos, buscan previsibilidad y ahorro marginal.
+- **Fit / deportistas** — interesados en la etiqueta "alta en proteína".
+
+### Anti-segmento
+- Clientes con presupuesto sub-$3/almuerzo (buffet, fast-casual) — Sin Cero no compite en ese tier.
+- Clientes que quieren "premium extremo" (>$30/almuerzo) — el mercado ecuatoriano rechaza ese rango (lección Munch).
+- Dietas restrictivas muy nicho sin disposición a customizar (nuestro flujo requiere elegir ingredientes).
+
+## Canales (verificado en app + sondeo)
+
+| Canal | Rol | Estado |
+|---|---|---|
+| **Web app (sin-cero.com)** | Conversión — formulario de pedido que termina en WhatsApp | Activo |
+| **WhatsApp (+593 98 464 5737)** | Cierre de pedido + atención | Activo (canal principal) |
+| **Instagram @sincero** | Awareness + captación | Activo |
+| **Facebook Sin-Cero** | Awareness + alcance 35+ | Activo |
+| **Email `info@sin-cero.com`** | B2B + notificaciones | Activo |
+| **TikTok** | Diferenciación futura (competencia casi nula en Ecuador) | TODO evaluar |
+| **Rappi / Uber Eats** | Alcance incremental, margen comprimido | TODO evaluar |
 
 ## Posicionamiento
-- TODO: propuesta de valor en una frase.
-- TODO: qué nos diferencia de la competencia directa.
-- TODO: pricing tier (premium, mid, mass) y por qué.
+
+### Propuesta de valor en una frase
+> "Enjarradas customizables, 100% naturales y sin ultraprocesados — con ingredientes frescos que tú eliges y entrega por WhatsApp."
+
+### Diferenciadores vs. competencia (del sondeo 2026-04-21)
+1. **Customización radical** — 6 categorías elegibles por pedido; ninguna otra marca ecuatoriana lo ofrece con este nivel de granularidad.
+2. **Producto físico distintivo** — el jarro con componentes separados es visualmente icónico.
+3. **Programa de fidelidad transparente** — 25 compras = 1 gratis, sin letra chica.
+4. **Packs prepagados** — incentivo a compra recurrente con ahorro modesto.
+5. **Gap oportunidad: macros públicos** — ningún competidor publica macros/calorías. Publicar en Instagram sería diferenciador inmediato.
+6. **Gap oportunidad: sostenibilidad** — el retorno de envase con descuento es economía circular; amplificar en comunicación.
+
+### Pricing tier
+- **Premium-accesible** ($4.20 - $6 por enjarrada totalmente customizada) — rango poco ocupado en Quito según el sondeo.
+- Competencia directa en tier buffet ($3 y menos) → no competimos ahí.
+- Competencia tier premium (>$15) → tampoco es donde jugamos.
 
 ## Competencia
 - TODO: 3-5 competidores directos con qué hacen bien y qué hacen mal.

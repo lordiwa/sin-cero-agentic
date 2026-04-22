@@ -9,17 +9,16 @@
 **Hitos**:
 - [x] Estructura de carpetas
 - [x] CLAUDE.md raiz con vision global
-- [x] 5 subagentes definidos en `.claude/agents/` (Claude Code)
-- [x] 5 skills equivalentes en `skills/<nombre>/SKILL.md` (Cowork)
+- [x] 5 skills en `skills/<nombre>/SKILL.md` (Cowork, auto-activables)
 - [x] `.claude-plugin/plugin.json` manifest del plugin
-- [x] 9 modulos de conocimiento esqueleto en `knowledge/`
+- [x] `.claude-plugin/marketplace.json` para instalacion desde GitHub
+- [x] 10 modulos de conocimiento en `knowledge/` (incluye templates-mensajes)
+- [x] Catalogo completo de ingredientes en `data/inventario/catalogo-ingredientes.md`
 - [x] `settings.json` con permisos y placeholder de WhatsApp MCP
-- [x] Documentacion de arquitectura y de instalacion del plugin
+- [x] Documentacion de arquitectura e instalacion del plugin
+- [x] QUICKSTART.md con prompts listos para copiar
 - [ ] Instalar el plugin en Cowork del usuario y verificar triggers
-- [ ] Llenar `knowledge/recetas.md` con el formato canonico de receta
-- [ ] Llenar `knowledge/clientes.md` con el esquema oficial de cliente
-- [ ] Llenar `knowledge/marketing-estrategia.md` con voz de marca y posicionamiento
-- [ ] Importar primeras recetas a `data/recetas/`
+- [ ] Importar primeras recetas reales a `data/recetas/`
 - [ ] Importar primeros clientes a `data/clientes/`
 
 ---

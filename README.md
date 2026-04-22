@@ -1,6 +1,10 @@
 # Sin Cero — Sistema Agentic
 
-Sistema multi-especialista para asistir en la gestion y administracion del negocio **Sin Cero** (comida/nutricion). Este repositorio es un **plugin instalable de Cowork** (primario) y tambien funciona como proyecto de Claude Code (secundario).
+Sistema multi-especialista para asistir en la gestion y administracion del negocio **Sin-Cero**: enjarradas (ensaladas gourmet en jarro, "comida 100% natural, sin ultra procesados") en Quito, Ecuador. Pedidos por WhatsApp +593 98 464 5737 y en [sin-cero.com](https://sin-cero.com).
+
+Este repositorio es un **plugin instalable de Cowork** (primario) y tambien funciona como proyecto de Claude Code (secundario). Complementa al repo de la app del negocio en [`lordiwa/sincero`](https://github.com/lordiwa/sincero).
+
+> **Para empezar rapido:** [`QUICKSTART.md`](QUICKSTART.md) trae un prompt listo para copiar en cualquier sesion de Cowork que instala y configura todo automaticamente.
 
 ## Que incluye
 
@@ -35,50 +39,42 @@ claude plugin add github:lordiwa/sin-cero-agentic
 
 ## Uso en Claude Code (alternativo)
 
-1. Instalar [Claude Code](https://claude.com/claude-code).
-2. Abrir esta carpeta en terminal: `cd sin-cero-agentic && claude`.
-3. Claude Code autodescubre los subagentes en `.claude/agents/`. Verificar con `/agents`.
+El plugin tambien es compatible con Claude Code: las skills se descubren como cualquier otro plugin. Instalacion identica:
+
+```bash
+claude plugin add github:lordiwa/sin-cero-agentic
+```
 
 ## Estructura del repo
 
 ```
 sin-cero-agentic/
-|-- .claude-plugin/plugin.json  <- manifest del plugin Cowork
+|-- .claude-plugin/
+|   |-- plugin.json             <- manifest del plugin
+|   `-- marketplace.json        <- marketplace para instalar desde GitHub
 |-- .claude/
-|   |-- agents/                 <- subagentes (Claude Code)
-|   `-- settings.json           <- MCPs, permisos
-|-- skills/                     <- skills auto-activables (Cowork)
+|   `-- settings.json           <- MCPs (WhatsApp placeholder), permisos
+|-- skills/                     <- 5 especialistas auto-activables
 |-- knowledge/                  <- modulos de dominio compartidos
 |-- data/                       <- datos reales del negocio
 |-- docs/                       <- arquitectura, fichas, roadmap
 |-- CLAUDE.md                   <- contexto siempre cargado
-`-- README.md
+|-- README.md
+`-- QUICKSTART.md               <- guia de arranque con prompts copy-paste
 ```
 
 ## Como invocar especialistas
 
-**Automatico (Cowork)** — la skill se activa sola por el contenido de la pregunta:
+Las skills se activan **solas** por el contenido de la pregunta. No hay que invocar a nadie por nombre:
+
 > "investiga articulos de salud y alimentacion" -> activa `nutricionista`
 > "cuanto nos cuesta el bowl mediterraneo" -> activa `inventario`
 > "escribi un caption de Instagram sobre la receta X" -> activa `marketing`
 
-**Explicito (Claude Code)**:
-> "@nutricionista investiga tendencias de dieta antiinflamatoria"
-> "@inventario calcula el costo unitario de la receta X"
+Si querés forzar una skill concreta, mencionala explicitamente en el prompt: "usa la skill nutricionista para...".
 
 ## Estado actual
 
 - Plugin Cowork configurado y 5 skills creadas.
 - Subagentes Claude Code preservados para compatibilidad.
-- Pendiente: dueno completa `knowledge/*.md` con conocimiento real y `data/` con datos reales.
-- Pendiente: configurar credenciales del MCP de WhatsApp (ver `.claude/settings.json`).
-
-## Roadmap y proximos pasos
-
-Ver [`docs/roadmap.md`](docs/roadmap.md).
-
-Proximos pasos sugeridos:
-1. Editar [`CLAUDE.md`](CLAUDE.md) y completar descripcion del producto Sin Cero.
-2. Llenar [`knowledge/marketing-estrategia.md`](knowledge/marketing-estrategia.md) con voz de marca.
-3. Definir el formato canonico de receta y cliente en `knowledge/recetas.md` y `knowledge/clientes.md`.
-4. Configurar el MCP de WhatsApp (ver instrucciones en `.claude/settings.json`).
+- Pendiente: dueno completa `knowledge/
