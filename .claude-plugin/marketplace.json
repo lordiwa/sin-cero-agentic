@@ -1,17 +1,19 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "sin-cero",
+  "name": "lordiwa",
   "owner": {
     "name": "lordiwa"
   },
-  "description": "Marketplace del plugin Sin Cero: sistema agentic para gestion y administracion de un negocio de comida/nutricion. Un unico plugin con cinco especialistas (nutricion, inventario, marketing, servicio al cliente, soporte tecnico).",
+  "description": "Marketplace privado de lordiwa. Contiene el plugin Sin Cero: sistema agentic para gestion y administracion de un negocio de comida/nutricion con cinco especialistas (nutricion, inventario, marketing, servicio al cliente, soporte tecnico).",
   "version": "0.1.0",
-  "repository": "https://github.com/lordiwa/sin-cero-agentic",
   "license": "Proprietary",
   "plugins": [
     {
       "name": "sin-cero",
-      "source": ".",
+      "source": {
+        "source": "github",
+        "repo": "lordiwa/sin-cero-agentic"
+      },
       "description": "Sistema agentic de Sin Cero. Cinco especialistas auto-activables en Cowork (skills) con respaldo en Claude Code (agents).",
       "version": "0.1.0",
       "author": {
